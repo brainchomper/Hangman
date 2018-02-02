@@ -32,23 +32,22 @@ function insertkey(pos, key) {
 }
 
 document.onkeyup = function (e) {
-	// var whichkey = String.fromCharCode(e.keyCode);
+	// var whichkey = String.fromCharCode(e.keyCode); DOSNT NEED
 	var whichkey = e.key;
 	var keypos = word.toLowerCase().indexOf(whichkey);
 	if (keypos > -1){
-		// to do
+		// they got it right
+		// loop through letters in word, adding whichkey to each postion in placeholder that matches
+
+		for (var x=0; x<word.length; x++) {
+			insertkey(keypos, whichkey);
+		}
 	}
 	else{
 		guesses.push(whichkey);
 		document.getElementById("used").innerHTML = guesses;
-
-		console.log (whichkey)
 	}
-	while (keypos != -1) {
-		insertkey(keypos, whichkey);
-		keypos = word.toUpperCase().indexOf(whichkey, keypos + 1);
-	}
-};
+	};
 
 
 // function over(){

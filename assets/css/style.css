@@ -1,0 +1,16 @@
+html {
+	font-family: 'Roboto', sans-serif;
+}
+body {
+	background-image: url("../images/carbon_fibre_@2X.png");
+	width: 80%;
+	margin: auto;
+}
+#word,#used {
+	font-family: 'Kalam', cursive;
+	font-size: 30px;
+	color: whitesmoke;
+}
+h1 {
+	color: whitesmoke;
+}

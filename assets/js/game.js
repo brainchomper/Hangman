@@ -1,16 +1,28 @@
+//RAN OUT OF TIME NEEDED TO MAKE JAVASCRIPT WORD HOLDER NOT DUMPING OUT TO CSS WAS TRYING TO USE SOMETHING LIKE
+//
+// var maskedWord = currentWord.replace(/./g, function (str) {
+// 	return "<span>" + ((str == " ") ? " " : " _ ") + "</span>";
+// });
+// document.getElementById("theWord").innerHTML = maskedWord;
+// //old
+// letters = document.getElementById("letters");
+// letters.innerHTML = '<li class="current-word">Current word:</li>';
+
+
+// END PSEUDOCODE FOR NOT WORKING 
 var guessInput, guess, guessButton, lettersGuessed, lettersMatched, output, man, letters;
 
 /* start config options */
 var availableLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var lives = 6;
-var words = ["olly", "dog", "titan", "complex", "beer", "vodka", "lizard", "scientist", "orange","string","work","biology","lemon","lime"];
+var words = ["ollie", "dog", "titan", "complex", "beer", "vodka", "lizard", "scientist", "orange","string","work","biology","lemon","lime"];
 var messages = {
 	win: 'You WON!',
 	lose: 'Game Over!',
 	guessed: ' has already been guessed, please try again...',
 	validLetter: 'Please enter a letter from A-Z'
 };
-/* end config options */
+//  end config options 
 
 /* choose a word */
 var currentWord = words[Math.floor(Math.random() * words.length)];
@@ -18,7 +30,7 @@ var lettersGuessed = lettersMatched = '';
 var numLettersMatched = 0;
 var guesses = [];      // Stored guesses
 
-/* Start game */
+// Start game
 window.onload = setup();
 
 document.onkeyup = function (e) {
@@ -26,19 +38,18 @@ document.onkeyup = function (e) {
 	output.innerHTML = '';
 	output.classList.remove('error', 'warning');
 	guess = e.key;
-	//guess = guessInput.value;
 
-	/* does guess have a value? if yes continue, if no, error */
+	// does guess have a value? if yes continue, if no, error 
 	if (guess) {
-		/* is guess a valid letter? if so carry on, else error */
+		// is guess a valid letter? if so carry on, else error 
 		if (availableLetters.indexOf(guess) > -1) {
-			/* has it been guessed (missed or matched) already? if so, abandon & add notice */
+			// has it been guessed (missed or matched) already? if so, abandon & add notice 
 			if ((lettersMatched && lettersMatched.indexOf(guess) > -1) || (lettersGuessed && lettersGuessed.indexOf(guess) > -1)) {
 				output.innerHTML = '"' + guess.toUpperCase() + '"' + messages.guessed;
 				output.classList.add("warning");
 				$('#letter').val("");
 			}
-			/* does guess exist in current word? if so, add to letters already matched, if final letter added, game over with win message */
+			//does guess exist in current word? if so, add to letters already matched, if final letter added, game over with win message 
 			else if (currentWord.indexOf(guess) > -1) {
 				var lettersToShow;
 				lettersToShow = document.querySelectorAll(".letter" + guess.toUpperCase());
@@ -48,7 +59,7 @@ document.onkeyup = function (e) {
 					$('#letter').val("");
 				}
 
-				/* check to see if letter appears multiple times */
+				// check to see if letter appears multiple times 
 				for (var j = 0; j < currentWord.length; j++) {
 					if (currentWord.charAt(j) === guess) {
 						numLettersMatched += 1;
@@ -60,10 +71,12 @@ document.onkeyup = function (e) {
 					gameOver(true);
 				}
 			}
+			//change lives
 			else {
 				lettersGuessed += guess;
 				lives--;
 				man.innerHTML = 'You Have ' + lives + ' Guesses Remaining';
+				//change pictures
 				if (lives==5){
 					$('#hangmanImg').attr('src', './assets/images/hangman1.png');
 				};
@@ -86,21 +99,20 @@ document.onkeyup = function (e) {
 				//Added 
 				guesses.push(guess);
 				document.getElementById("guessed").innerHTML = guesses;
-				//console.log(guessed);
 				//end added
 
 				$('#letter').val("");
 				if (lives == 0) gameOver();
 			}
 		}
-		/* Not a valid letter, throw error */
+		// Not a valid letter, throw error 
 		else {
 			output.classList.add('error');
 			output.innerHTML = messages.validLetter;
 			$('#letter').val("");
 		}
 	}
-	/* No letter, throw an error */
+	// No letter, throw an error 
 	else {
 		output.classList.add('error');
 		output.innerHTML = messages.validLetter;
@@ -109,7 +121,7 @@ document.onkeyup = function (e) {
 };
 
 function setup() {
-	/* make #man and #output blank, create vars for later access */
+	// make #man and #output blank, create vars for later access
 	output = document.getElementById("output");
 	man = document.getElementById("man");
 	// guessInput = document.getElementById("letter");

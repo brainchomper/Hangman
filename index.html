@@ -16,24 +16,24 @@
 	<div class="container">
 		<header><h1 align="center">Hangman</h1><hr></header>
 			
-		<div class="col-sm-4">
-			<div id="imageDiv"><img id="hangmanImg" src="./assets/images/hangman.png"></div>
-			<div id="thisdiv"></div>
+		<div class="col-sm-5">
+			<div align="center"><img id="hangmanImg" src="./assets/images/hangman.png"></div>
+			<button type="button" class="btn btn-primary btn-lg btn-block" id="resetBtn" onclick='location.reload()'>Start Over</button>
+
 		</div>
-		<div class="col-sm-8">
-				<button type="button" class="btn btn-primary btn-lg btn-block" id="resetBtn" onclick='location.reload()'>Start Over</button>
+		<div class="col-sm-7">
 				<div id="hangman">
 					<div id="letter"></div>
 					<div id="guess"></div>
-					<ul id="letters">
-						<li class="current-word">Current word:</li>
-					</ul>
 					<p id="man">You Have 5 Guesses Remaining</p>
 					<p id="output" class="output"></p>
 
 					<p>You Guessed These Letters Wrong:
 						<span id="guessed" class="guessed"></span>
 					</p>
+					<ul id="letters">
+							<li class="current-word">Current word:</li>
+						</ul>
 				</div>
 			</div>
 			
